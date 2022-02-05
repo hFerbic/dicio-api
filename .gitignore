@@ -1,2 +1,5 @@
 node_modules/
 .rest
+build/
+*.log
+*.tsbuildinfo

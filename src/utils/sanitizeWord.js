@@ -16,6 +16,6 @@ module.exports = (word) => {
     .replace(/ô/g, 'o')
     .replace(/ü/g, 'u')
     .replace(/à/g, 'a')
-    .replace(/[^\w\s]/gi, '')
+    .replace(/[^\w\s-]/gi, '')
 
 }

@@ -37,7 +37,7 @@ Response:
 ```js
 [
   {
-    title: String,
+    word: String,
     class: String,
     meanings: [String],
     etymology: String,
@@ -166,14 +166,14 @@ são divididos em outro objeto
 
 Todas as acentuações: https://significado.herokuapp.com/allMeanings/metro
 
-Retorna os significados de todas as grafias de acentuações possíveis para a palavra inserida, diferenciando pela chave "title".
+Retorna os significados de todas as grafias de acentuações possíveis para a palavra inserida, diferenciando pela chave "word".
 
 **Exemplo com a palavra `metro`**
 
 ```js
 [
     {
-        "title": "metro",
+        "word": "metro",
         "class": "substantivo masculino",
         "meanings": [
             "Unidade fundamental das medidas compreendidas no sistema métrico.",
@@ -187,7 +187,7 @@ Retorna os significados de todas as grafias de acentuações possíveis para a p
         "etymology": "Etimologia (origem da palavra metro). Do grego metrón.ou."
     },
     {
-        "title": "metrô",
+        "word": "metrô",
         "class": "substantivo masculino",
         "meanings": [
             "Abreviatura de metropolitano, estrada de ferro urbana, total ou parcialmente subterrânea."

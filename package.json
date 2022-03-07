@@ -8,9 +8,10 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "ts-node-dev --transpile-only --respawn src/index.ts",
-    "build": "tsc"
+    "start": "node build/index.js",
+    "build": "tsc",
+    "postinstall": "npm run build",
+    "dev": "ts-node-dev --transpile-only --respawn src/index.ts"
   },
   "dependencies": {
     "axios": "^0.21.1",

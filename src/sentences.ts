@@ -1,7 +1,7 @@
 import * as cheerio from 'cheerio';
 import { Request, Response } from 'express';
+import getCorrectLink from './utils/getCorrectLink';
 import axiosClient from './services/axiosClient';
-import sanitizeWord from './utils/sanitizeWord';
 
 interface ISentence {
   sentence: string;
@@ -10,10 +10,10 @@ interface ISentence {
 
 async function getSentences(req: Request, res: Response) {
   const { word } = req.params;
-  const sanitizedWord = sanitizeWord(word);
 
   try {
-    const { data: dicioHTML } = await axiosClient.get(`https://dicio.com.br/${sanitizedWord}`);
+    const link = await getCorrectLink(word);
+    const { data: dicioHTML } = await axiosClient.get(link);
 
     const $ = cheerio.load(dicioHTML);
 

@@ -1,13 +1,8 @@
 import { Response, Request } from 'express';
 import * as cheerio from 'cheerio';
+import IMeaning from './interfaces/IMeaning';
 import sanitizeWord from './utils/sanitizeWord';
 import axiosClient from './services/axiosClient';
-
-interface IMeaning {
-  class: string;
-  meanings: string[];
-  etymology: string;
-}
 
 export default async function controller(req: Request, res: Response) {
   const { word } = req.params;

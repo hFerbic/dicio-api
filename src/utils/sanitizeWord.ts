@@ -1,4 +1,4 @@
-module.exports = (word) => {
+function sanitize(word: string) {
   const wordLowerCased = word.toLowerCase();
   const wordWithoutSpaces = wordLowerCased.trim();
 
@@ -17,4 +17,6 @@ module.exports = (word) => {
     .replace(/ü/g, 'u')
     .replace(/à/g, 'a')
     .replace(/[^\w\s-]/gi, '');
-};
+}
+
+export default sanitize;

@@ -19,11 +19,12 @@
     "max-len": [
       "error",
       {
-        "code": 80
+        "code": 100
       }
     ],
     "no-useless-constructor": "off",
-    "no-empty-function": "warn"
+    "no-empty-function": "warn",
+    "no-await-in-loop": "off"
   },
   "settings": {
     "import/resolver": {

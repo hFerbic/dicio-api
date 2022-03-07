@@ -1,5 +1,5 @@
-module.exports = (word) => {
-  const wordLowerCased = word.toLowerCase()
+function sanitize(word: string) {
+  const wordLowerCased = word.toLowerCase();
   const wordWithoutSpaces = wordLowerCased.trim();
 
   return wordWithoutSpaces
@@ -16,6 +16,7 @@ module.exports = (word) => {
     .replace(/ô/g, 'o')
     .replace(/ü/g, 'u')
     .replace(/à/g, 'a')
-    .replace(/[^\w\s-]/gi, '')
-
+    .replace(/[^\w\s-]/gi, '');
 }
+
+export default sanitize;

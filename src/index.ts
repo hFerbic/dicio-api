@@ -13,6 +13,8 @@ const app = express();
 app.use(cors());
 app.disable('x-powered-by');
 
+app.get('/favicon.ico', (_, res) => res.sendStatus(204));
+
 app.get('/:word', meanings);
 
 app.get('/allMeanings/:word', allMeanings);

@@ -1,30 +1,14 @@
 import { Response, Request } from 'express';
 import * as cheerio from 'cheerio';
 import IMeaning from './interfaces/IMeaning';
-import sanitizeWord from './utils/sanitizeWord';
 import axiosClient from './services/axiosClient';
-
-async function getCorrectLink(word: string) {
-  const url = `/pesquisa.php?q=${word}`;
-  const { data: search } = await axiosClient.get(url);
-
-  const $Search = cheerio.load(search);
-
-  const words = $Search('.resultados a').find('.list-link').toArray();
-  const [correctWordVariation] = words.filter((variation) => $Search(variation).text() === word);
-  const link = correctWordVariation.parentNode
-    ? $Search(correctWordVariation.parentNode).attr('href')
-    : '';
-
-  return link || word;
-}
+import getCorrectLink from './utils/getCorrectLink';
 
 export default async function controller(req: Request, res: Response) {
   const { word } = req.params;
-  const sanitizedWord = sanitizeWord(word);
 
   try {
-    const link = sanitizedWord !== word ? await getCorrectLink(sanitizedWord) : sanitizedWord;
+    const link = await getCorrectLink(word);
 
     const { data: dicioHTML } = await axiosClient.get(link);
     const $ = cheerio.load(dicioHTML);

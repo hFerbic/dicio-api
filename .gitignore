@@ -1,6 +1,6 @@
 node_modules/
-.rest
 build/
+.rest
 *.log
-*.tsbuildinfo
-flow.drawio
+tsconfig.tsbuildinfo
+*.drawio

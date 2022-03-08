@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import * as cheerio from 'cheerio';
-import axiosClient from './services/axiosClient';
-import sanitizeWord from './utils/sanitizeWord';
+import axiosClient from '../../services/axiosClient';
+import sanitizeWord from '../../utils/sanitizeWord';
 
 interface IMeaning {
   word: string;
@@ -18,7 +18,7 @@ function isRedirectUrl(followUrl: string, i: number, $: cheerio.CheerioAPI) {
   return false;
 }
 
-async function controller(req: Request, res: Response) {
+export default async function allMeaningsController(req: Request, res: Response) {
   const { word } = req.params;
   const sanitizedWord = sanitizeWord(word);
 
@@ -92,5 +92,3 @@ async function controller(req: Request, res: Response) {
     res.status(400).json({ error: err.message });
   }
 }
-
-export default controller;

@@ -1,5 +1,5 @@
 import * as cheerio from 'cheerio';
-import axiosClient from '../services/axiosClient';
+import axiosClient from './axiosClient';
 import sanitizeWord from './sanitizeWord';
 
 async function getCorrectLink(word: string): Promise<string> {

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import * as cheerio from 'cheerio';
-import axiosClient from '../../services/axiosClient';
+import axiosClient from '../../utils/axiosClient';
 import sanitizeWord from '../../utils/sanitizeWord';
 
 interface IMeaning {

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import extractSyllables from '../../scrappers/syllables';
 import getCorrectLink from '../../utils/getCorrectLink';
-import axiosClient from '../../services/axiosClient';
+import axiosClient from '../../utils/axiosClient';
 
 export default async function syllablesController(req: Request, res: Response) {
   const { word } = req.params;

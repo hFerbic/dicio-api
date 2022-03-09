@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import axiosClient from '../../services/axiosClient';
+import axiosClient from '../../utils/axiosClient';
 import getCorrectLink from '../../utils/getCorrectLink';
 import extractMeanings from '../../scrappers/meanings';
 

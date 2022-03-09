@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import getCorrectLink from '../../utils/getCorrectLink';
-import axiosClient from '../../services/axiosClient';
+import axiosClient from '../../utils/axiosClient';
 import extractSentences from '../../scrappers/sentences';
 
 export default async function sentencesController(req: Request, res: Response) {

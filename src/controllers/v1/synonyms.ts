@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import extractSynonyms from '../../scrappers/synonyms';
-import axiosClient from '../../services/axiosClient';
+import axiosClient from '../../utils/axiosClient';
 import getCorrectLink from '../../utils/getCorrectLink';
 
 export default async function synonymsController(req: Request, res: Response) {

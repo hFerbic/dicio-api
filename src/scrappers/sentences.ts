@@ -1,9 +1,5 @@
 import * as cheerio from 'cheerio';
-
-interface ISentence {
-  sentence: string;
-  author: string;
-}
+import ISentence from '../interfaces/ISentence';
 
 function extractSentences(html: string) {
   const $ = cheerio.load(html);

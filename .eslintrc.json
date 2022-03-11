@@ -1,7 +1,8 @@
 {
   "env": {
     "es2021": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "extends": [
     "airbnb-base"
@@ -24,7 +25,8 @@
     ],
     "no-useless-constructor": "off",
     "no-empty-function": "warn",
-    "no-await-in-loop": "off"
+    "no-await-in-loop": "off",
+    "class-methods-use-this": "off"
   },
   "settings": {
     "import/resolver": {

@@ -4,3 +4,5 @@ build/
 *.log
 tsconfig.tsbuildinfo
 *.drawio
+.env
+db/

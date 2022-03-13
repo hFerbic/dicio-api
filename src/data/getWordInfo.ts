@@ -5,12 +5,10 @@ import extractMeanings from '../scrappers/meanings';
 import extractSynonyms from '../scrappers/synonyms';
 import extractSyllables from '../scrappers/syllables';
 import extractSentences from '../scrappers/sentences';
-import MongoDB from './mongodb/mongodb';
+import database from './mongodb/mongodb';
+import log from '../utils/logger';
 
 export default async function getWordInfo(word: string): Promise<IWordInfo> {
-  const database = new MongoDB();
-  await database.connect();
-
   try {
     const wordInfoFromDB = await database.get(word);
     if (wordInfoFromDB) return wordInfoFromDB;
@@ -37,6 +35,7 @@ export default async function getWordInfo(word: string): Promise<IWordInfo> {
 
     return wordInfo;
   } catch (error) {
+    log(error);
     throw new Error('Could not get word info');
   }
 }

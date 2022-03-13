@@ -42,8 +42,8 @@ class MongoDB implements IDatabase {
           word: wordInfo.word,
           url: wordInfo.url,
           synonyms: wordInfo.synonyms,
-          meanings: wordInfo.meanings.map((meaning) => ({ ...meaning, _id: undefined })),
-          sentences: wordInfo.sentences?.map((sentence) => ({ ...sentence, _id: undefined })),
+          meanings: wordInfo.meanings,
+          sentences: wordInfo.sentences,
           syllables: wordInfo.syllables,
         };
       }

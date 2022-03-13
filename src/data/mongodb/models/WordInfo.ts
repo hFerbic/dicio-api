@@ -17,7 +17,7 @@ const MeaningsSchema = new mongoose.Schema<IMeaningSchema>({
   etymology: {
     type: String,
   },
-});
+}, { _id: false });
 
 const SentenceSchema = new mongoose.Schema<ISentence>({
   sentence: {
@@ -28,7 +28,7 @@ const SentenceSchema = new mongoose.Schema<ISentence>({
     type: String,
     required: true,
   },
-});
+}, { _id: false });
 
 const WordInfoSchema = new mongoose.Schema<IWordInfo>({
   word: {

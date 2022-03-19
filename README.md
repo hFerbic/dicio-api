@@ -6,107 +6,113 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ThiagoNelsi_dicio-api&metric=code_smells)](https://sonarcloud.io/dashboard?id=ThiagoNelsi_dicio-api)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ThiagoNelsi_dicio-api&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=ThiagoNelsi_dicio-api)
 
-O Dicio API permite buscas por diversas informações a respeito de milhares de palavras da língua portuguesa, todos os dados são extraídos do [Dicio](https://dicio.com.br).  
-Nesta versão é possível acessar os seguintes recursos:
+O Dicio API permite buscas por diversas informações a respeito de milhares de palavras da língua portuguesa, todos os dados são extraídos do [Dicio](https://dicio.com.br).
 
-> - SIGNIFICADO
+A API está atualmente na **versão 2**, em que é possível acessar os seguintes recursos:
+
+> - SIGNIFICADOS
 > - SINÔNIMOS
 > - SEPARAÇÃO SILÁBICA
 > - EXEMPLOS DE FRASES
 
 <br />
 
-### Endpoints e Response Params
+### Endpoints e Responses
 
-##### Significados: GET `/[word]` ou `/meanings/[word]`:   
+> ***Alerta: Rotas em português estão apenas disponíveis na versão 2.***
+>
+> Para utilizar a versão 2, lembre-se de adicionar o prefixo `/v2/` para todos os endpoints.
+>
+> Ex.:
+> - /v2/[palavra]
+> - /v2/sinonimos/[palavra]
+
+#### ***Significados***
+
+Significados podem ser acessados através do método GET em qualquer uma das seguintes rotas:
+- `/[palavra]`
+- `/significados/[palavra]`
+- `/meanings/[palavra]`
+
 Response:
-```js
+```ts
 [
   {
-    class: String,
-    meanings: [String],
-    etymology: String,
+    partOfSpeech: string,
+    meanings: string[],
+    etymology: string,
   }
 ]
 ```
 
 <br />
 
-##### Significados: GET `/allMeanings/[word]`:   
+#### ***Sinônimos***:
+
+Sinônimos podem ser acessados através do método GET em qualquer uma das seguintes rotas:
+
+- `/sinonimos/[palavra]`
+- `/synonyms/[palavra]`
+
 Response:
-```js
+```ts
+string[]
+```
+
+<br />
+
+#### ***Separação silábica***
+
+A separação silábica pode ser acessada através do método GET em qualquer uma das seguintes rotas:
+
+- `/silabas/[palavra]`
+- `/syllables/[palavra]`
+
+Response:
+```ts
+string[]
+```
+
+<br />
+
+#### ***Frases***
+
+Frases com a palavra podem ser acessada através do método GET em qualquer uma das seguintes rotas:
+
+- `/frases/[palavra]`
+- `/sentences/[palavra]`
+
+Response:
+```ts
 [
   {
-    word: String,
-    class: String,
-    meanings: [String],
-    etymology: String,
-  }
-]
-```
-
-<br />
-
-##### Sinônimos: GET `/synonyms/[word]`:   
-Response:
-```js
-[
-  String,
-  String,
-  String,
-  ...
-]
-```
-
-<br />
-
-##### Separação silábica: GET `/syllables/[word]`:   
-Response:
-```js
-{
-  syllablesText: String,
-  syllablesCount: Number
-}
-```
-
-<br />
-
-##### Exemplos em frases: GET `/sentences/[word]`:   
-Response:
-```js
-[
-  {
-    sentence: String,
-    author: String
+    sentence: string,
+    author: string
   },
   {
-    sentence: String,
-    author: String
+    sentence: string,
+    author: string
   }
 ]
 ```
 
 * * *
 
-## Exemplo de uso:
+## Exemplos de uso:
 
 Usando a palavra `livro` 📗 como exemplo, vamos começar buscando seu significado:
 
-### Request URL
+### Significados
 
-https://significado.herokuapp.com/livro
+https://significado.herokuapp.com/v2/livro
 
-> Significados também podem ser acessados utilizando o endpoint `/meanings/[word]`: https://significado.herokuapp.com/meanings/livro
+A resposta é um array de objetos. Cada objeto possui `partOfSpeech` (classe gramatical da palavra),
+`meanings` (array de strings com os diversos sentidos que a palavra pode assumir) e `etymology` (etimologia da palavra).
 
-### Response
-
-A resposta é um array de objetos. Cada objeto possui uma `class` (classe gramatical da palavra),
-`meanings` (array de strings, com os diversos significados da palavra) e `etymology` (etimologia da palavra)
-
-```js
+```json
 [
   {
-    "class": "substantivo masculino",
+    "partOfSpeech": "substantivo masculino",
     "meanings": [
       "Conjunto de folhas impressas e reunidas em volume encadernado ou brochado.",
       "Obra em prosa ou verso, de qualquer extensão, disponibilizada em qualquer meio ou suporte: livro bem escrito; livro eletrônico.",
@@ -122,85 +128,52 @@ A resposta é um array de objetos. Cada objeto possui uma `class` (classe gramat
 
 ### Palavras com múltiplas classes gramaticais
 
-Quando uma palavra tem mais de uma classe gramatical e significados diferentes, as classes gramaticais e seus respectivos significados 
+Quando uma palavra possui mais de uma classe gramatical e significados diferentes, as classes gramaticais e seus respectivos significados
 são divididos em outro objeto
 
-**Exemplo com a palavra `auto`**
+**Exemplo com a palavra `a`**
 
-```js
+```json
 [
   {
-    "class": "substantivo masculino",
+    "partOfSpeech": "artigo definido",
     "meanings": [
-      "Festividade pública; solenidade.",
-      "[Jurídico] Documento escrito, termo ou registro, que narra detalhadamente uma diligência policial, servindo de prova ou evidência de uma ocorrência.",
-      "[Teatro]  Peça teatral em forma poética, de origem medieval, que focaliza temas religiosos e profanos, de criação essencialmente popular, apresenta uma linguagem que integra vocabulário e expressões consagradas pelo povo."
+      "Artigo definido feminino de o: a bola, a casa."
     ],
     "etymology": ""
   },
   {
-    "class": "substantivo masculino plural",
+    "partOfSpeech": "preposição",
     "meanings": [
-      "[Jurídico] Os documentos ou registros produzidos no desenrolar de um processo: petições, certidões e os registros de depoimentos foram anexados aos autos."
+      "Exprime relação de movimento: ir a São Paulo.",
+      "Indica tempo: partir a 20 de janeiro.",
+      "Expressa um fim, objetivo, propósito: viajar a negócios.",
+      "Demonstra um meio: atravessar a ponte a pé.",
+      "Indica um instrumento: quebrar pedras a picareta.",
+      "Estabelece uma relação de modo: andar a galope.",
+      "Introduz um preço, valor: vender livros a quinze reais.",
+      "[Gramática] Introduz o objeto indireto: beijar a mão a uma dama."
     ],
-    "etymology": "Etimologia (origem da palavra auto). Do latim actum.i."
+    "etymology": ""
   },
   {
-    "class": "substantivo masculino",
+    "partOfSpeech": "substantivo masculino",
     "meanings": [
-      "Veículo movido a motor; automóvel."
+      "Primeira letra do alfabeto e primeira das vogais.",
+      "Toda representação da forma, do som ou do tipo impresso dessa letra: palavra escrita com o a aberto.",
+      "[Música] Forma de representação do lá."
     ],
-    "etymology": "Etimologia (origem da palavra auto). Forma Red. de automóvel."
+    "etymology": ""
   },
-  {
-    "class": "substantivo masculino",
-    "meanings": [
-      "Breve momento; instante."
-    ],
-    "etymology": "Etimologia (origem da palavra auto). De átomo."
-  }
+  ...
 ]
 ```
 
-#### Informações adicionais sobre a palavra:
+### Sinônimos:
 
-Todas as acentuações: https://significado.herokuapp.com/allMeanings/metro
+https://significado.herokuapp.com/v2/sinonimos/livro
 
-Retorna os significados de todas as grafias de acentuações possíveis para a palavra inserida, diferenciando pela chave "word".
-
-**Exemplo com a palavra `metro`**
-
-```js
-[
-    {
-        "word": "metro",
-        "class": "substantivo masculino",
-        "meanings": [
-            "Unidade fundamental das medidas compreendidas no sistema métrico.",
-            "Unidade de medida utilizada para medir o comprimento, estabelecida pelo Sistema Internacional de Unidades (SI), determinada pela distância percorrida pela luz no vácuo, no decorrer de um espaço de tempo, cuja correspondência é igual a de uma fração de 1/299.792.458 de segundo.",
-            "Qualquer instrumento, geralmente uma fita ou uma vareta, que demonstra essa medida de comprimento.",
-            "Versificação. Medida estrutural de organização que determina o número de sílabas ou do conjunto de pés de um verso.",
-            "Versificação. Modo ou formato rítmico de uma composição poética.",
-            "[Música] Disposição de modo organizado das pulsações em modelos permanentes de acentuação.",
-            "[Portugal] Forma abreviada de metropolitano - refere-se, neste caso, ao sistema de transporte, conhecido no Brasil como: metrô."
-        ],
-        "etymology": "Etimologia (origem da palavra metro). Do grego metrón.ou."
-    },
-    {
-        "word": "metrô",
-        "class": "substantivo masculino",
-        "meanings": [
-            "Abreviatura de metropolitano, estrada de ferro urbana, total ou parcialmente subterrânea."
-        ],
-        "etymology": ""
-    }
-]
-
-```
-
-Sinônimos: https://significado.herokuapp.com/synonyms/livro
-
-```js
+```json
 [
   "alfarrábio",
   "calhamaço",
@@ -209,17 +182,22 @@ Sinônimos: https://significado.herokuapp.com/synonyms/livro
 
 ```
 
-Separação silábica: https://significado.herokuapp.com/syllables/livro
+### Separação silábica:
 
-```js
-{
-  "syllablesText": "li-vro",
-  "syllablesCount": 2
-}
+https://significado.herokuapp.com/v2/silabas/livro
+
+```json
+[
+  "li",
+  "vro"
+]
 ```
 
-Exemplos de frases: https://significado.herokuapp.com/sentences/livro
-```js
+### Exemplos de frases:
+
+https://significado.herokuapp.com/v2/frases/livro
+
+```json
 [
   {
     "sentence": "No fim tu hás de ver que as coisas mais leves são as únicas que o vento não conseguiu levar: um estribilho antigo um carinho no momento preciso o folhear de um livro de poemas o cheiro que tinha um dia o próprio vento...",

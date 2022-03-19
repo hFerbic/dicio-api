@@ -6,10 +6,9 @@ function extractMeanings(html: string) {
 
   const meanings: IMeaning[] = [];
   const structure = {
-    class: '',
+    partOfSpeech: '',
     meanings: [],
     etymology: '',
-
   };
 
   meanings.push(structure);
@@ -21,12 +20,12 @@ function extractMeanings(html: string) {
     if (cheerioElement.hasClass('cl')) {
       if (
         meanings.length === 1
-        && meanings[0].class === ''
+        && meanings[0].partOfSpeech === ''
         && meanings[0].meanings.length === 0
       ) {
-        meanings[0].class = text;
+        meanings[0].partOfSpeech = text;
       } else {
-        meanings.push({ class: text, meanings: [], etymology: '' });
+        meanings.push({ partOfSpeech: text, meanings: [], etymology: '' });
       }
     } else if (cheerioElement.hasClass('etim')) {
       meanings[meanings.length - 1].etymology = text;

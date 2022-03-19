@@ -1,5 +1,5 @@
 interface IMeaning {
-  class: string;
+  partOfSpeech: string;
   meanings: string[];
   etymology: string;
 }

@@ -1,12 +1,6 @@
 import { Response, Request } from 'express';
-import getWordInfo from '../../data/getWordInfo';
+import sentencesControllerV1 from '../v1/sentences';
 
-export default async function meaningController(req: Request, res: Response) {
-  const { word } = req.params;
-  try {
-    const { sentences } = await getWordInfo(word);
-    res.json(sentences);
-  } catch (err: any) {
-    res.status(400).json({ error: err.message });
-  }
+export default async function sentencesController(req: Request, res: Response) {
+  sentencesControllerV1(req, res);
 }

@@ -1,7 +1,7 @@
 import { Response, Request } from 'express';
 import getWordInfo from '../../data/getWordInfo';
 
-export default async function meaningController(req: Request, res: Response) {
+export default async function meaningsController(req: Request, res: Response) {
   const { word } = req.params;
   try {
     const { meanings } = await getWordInfo(word);

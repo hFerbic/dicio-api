@@ -26,7 +26,7 @@ const SentenceSchema = new mongoose.Schema<ISentence>({
   },
   author: {
     type: String,
-    required: true,
+    required: false,
   },
 }, { _id: false });
 

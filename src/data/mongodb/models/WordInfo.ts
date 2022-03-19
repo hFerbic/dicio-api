@@ -39,7 +39,7 @@ const WordInfoSchema = new mongoose.Schema<IWordInfo>({
   meanings: [MeaningsSchema],
   sentences: [SentenceSchema],
   synonyms: [String],
-  syllables: String,
+  syllables: [String],
   url: String,
 });
 

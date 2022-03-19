@@ -6,7 +6,7 @@ interface IWordInfo {
   url?: string;
   meanings: IMeaning[];
   sentences: ISentence[];
-  syllables: string;
+  syllables: string[];
   synonyms: string[];
 }
 

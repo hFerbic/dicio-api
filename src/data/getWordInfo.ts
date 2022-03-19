@@ -28,7 +28,7 @@ export default async function getWordInfo(word: string): Promise<IWordInfo> {
       synonyms,
       meanings,
       sentences,
-      syllables: syllables.syllablesText,
+      syllables,
     };
 
     database.insert(wordInfo);

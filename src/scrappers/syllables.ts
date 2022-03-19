@@ -9,12 +9,7 @@ function extractSyllables(html: string) {
     throw new Error(`Could not parse silabic matches from "${additionalText}"`);
   }
 
-  const syllablesInfo = {
-    syllablesText: syllabicMatches[0].trim(),
-    syllablesCount: syllabicMatches[0].split('-').length,
-  };
-
-  return syllablesInfo;
+  return syllabicMatches[0].trim().split('-');
 }
 
 export default extractSyllables;

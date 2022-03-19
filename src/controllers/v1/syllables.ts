@@ -13,8 +13,8 @@ export default async function syllablesController(req: Request, res: Response) {
     const { syllables } = await getWordInfo(word);
 
     const response: IResponse = {
-      syllablesText: syllables,
-      syllablesCount: syllables.split('-').length,
+      syllablesText: syllables.join('-'),
+      syllablesCount: syllables.length,
     };
 
     res.json(response);

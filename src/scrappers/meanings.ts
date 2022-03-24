@@ -47,6 +47,13 @@ function extractMeanings(html: string) {
     }
   });
 
+  // In some cases the part of speech is not together with the meanings,
+  // but in the end of list (at the 'adicional' class)
+  if (meanings.length === 1 && meanings[0].partOfSpeech === '') {
+    const partOfSpeech = $('p.adicional').text().match(/(?<=Classe gramatical: ).*(?=\n.)/gi);
+    meanings[0].partOfSpeech = partOfSpeech ? partOfSpeech[0] : '';
+  }
+
   return meanings;
 }
 

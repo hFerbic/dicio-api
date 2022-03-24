@@ -8,7 +8,15 @@ async function getCorrectLink(word: string): Promise<string> {
   if (word === sanitizedWord) return word;
 
   const url = `https://dicio.com.br/pesquisa.php?q=${sanitizedWord}`;
-  const { data: search } = await axiosClient.get(url);
+  const { data: search, request } = await axiosClient.get(url);
+
+  if (request.res.responseUrl !== url) {
+    const regex = /(?<=https:\/\/www\.dicio\.com\.br\/).*(?=\/)/gi;
+    if (regex.test(request.res.responseUrl)) {
+      const [extractedWord] = request.res.responseUrl.match(regex);
+      return extractedWord;
+    }
+  }
 
   const $Search = cheerio.load(search);
 

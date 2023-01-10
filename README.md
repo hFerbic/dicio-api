@@ -104,7 +104,7 @@ Usando a palavra `livro` 📗 como exemplo, vamos começar buscando seu signific
 
 ### Significados
 
-https://significado.herokuapp.com/v2/livro
+https://dicio-api-ten.vercel.app/v2/livro
 
 A resposta é um array de objetos. Cada objeto possui `partOfSpeech` (classe gramatical da palavra),
 `meanings` (array de strings com os diversos sentidos que a palavra pode assumir) e `etymology` (etimologia da palavra).
@@ -171,7 +171,7 @@ são divididos em outro objeto
 
 ### Sinônimos:
 
-https://significado.herokuapp.com/v2/sinonimos/livro
+https://dicio-api-ten.vercel.app/v2/sinonimos/livro
 
 ```json
 [
@@ -184,7 +184,7 @@ https://significado.herokuapp.com/v2/sinonimos/livro
 
 ### Separação silábica:
 
-https://significado.herokuapp.com/v2/silabas/livro
+https://dicio-api-ten.vercel.app/v2/silabas/livro
 
 ```json
 [
@@ -195,7 +195,7 @@ https://significado.herokuapp.com/v2/silabas/livro
 
 ### Exemplos de frases:
 
-https://significado.herokuapp.com/v2/frases/livro
+https://dicio-api-ten.vercel.app/v2/frases/livro
 
 ```json
 [

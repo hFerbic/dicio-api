@@ -15,5 +15,5 @@ const server: Server = new Server();
 
   await database.connect().catch(log);
 
-  server.start(Number(process.env.PORT) || 3333);
+  // server.start(Number(process.env.PORT) || 3333);
 })();

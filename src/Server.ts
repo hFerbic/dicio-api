@@ -14,7 +14,7 @@ export default class Server {
     this.app.disable('x-powered-by');
 
     this.app.get('/favicon.ico', (_, res) => res.sendStatus(204));
-
+    this.app.use((req, res) => console.log(req.ip));
     this.app.use(v1Routes(router));
     this.app.use(v2Routes(router));
   }

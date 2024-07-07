@@ -19,7 +19,7 @@ export default class Server {
     this.app.use(v2Routes(router));
   }
 
-  start(PORT: number = 3333) {
+  start(PORT: number = 8008) {
     this.app.listen(PORT, () => {
       // eslint-disable-next-line no-console
       console.log(`Server listening on port ${PORT}`);
